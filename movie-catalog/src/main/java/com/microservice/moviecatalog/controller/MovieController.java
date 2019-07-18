@@ -38,11 +38,12 @@ public class MovieController {
 		String movieInfoReceived = "timepass movie";
 		
 		//movieInfoReceived = restTemplate.getForObject("localhost:8082/movies/info", String.class);
-		String movieRating = restTemplate.getForObject("MOVIE-INFO-SERVICE/movies/info", String.class);
+		movieInfoReceived = restTemplate.getForObject("http://movie-info-service/movies/info", String.class);
 		//Movie movie = restTemplate.getForObject("http://movie-info-service/movies/" + rating.getMovieId(), Movie.class);
 		
 		//movieInfo.put(movieInfoReceived, "8");
-		movieInfo.put("carborator", "6");
+		System.out.println("movie info received:::::::::::::::::::::::: "+movieInfoReceived);
+		movieInfo.put(movieInfoReceived, "6");
 		return movieInfo;
 	}
 }
