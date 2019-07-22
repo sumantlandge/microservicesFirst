@@ -12,16 +12,6 @@ import com.microservice.moviecatalog.models.Movie;
 
 @RestController
 public class MovieController {
-
-//	Map<String, Integer> movieInfo = new HashMap<>();
-//	@GetMapping("/getmovie")
-//	Map<String, Integer> getMovieCatalog(){
-//		movieInfo.put("Intersteller", 9);
-//		movieInfo.put("inception", 8);
-//		movieInfo.put("Terminator", 6);
-//		
-//		return movieInfo;
-//	}
 	
 	@GetMapping("/")
 	public String getStatus()
