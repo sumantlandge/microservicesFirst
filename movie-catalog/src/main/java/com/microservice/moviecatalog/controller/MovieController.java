@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,17 +24,17 @@ public class MovieController {
 	RestTemplate restTemplate;
 	
 	Map<String, String> movieInfo = new HashMap<>();
-	@GetMapping("/getmovie")
-	Map<String, String> getMovieCatalog(){
+	@GetMapping("/getmovie/{movieId}")
+	Map<String, String> getMovieCatalog(@PathVariable("movieId") String movieId){
 		String movieInfoReceived = "timepass movie";
 		
 		//movieInfoReceived = restTemplate.getForObject("localhost:8082/movies/info", String.class);
-		movieInfoReceived = restTemplate.getForObject("http://movie-info-service/movies/info", String.class);
+		movieInfoReceived = restTemplate.getForObject("http://movie-info-service/movies/info/"+movieId, String.class);
 		//Movie movie = restTemplate.getForObject("http://movie-info-service/movies/" + rating.getMovieId(), Movie.class);
 		
-		//movieInfo.put(movieInfoReceived, "8");
+		String movieRating = restTemplate.getForObject("http://movie-rating-service/rating/"+movieId, String.class);
 		System.out.println("movie info received:::::::::::::::::::::::: "+movieInfoReceived);
-		movieInfo.put(movieInfoReceived, "6");
+		movieInfo.put(movieInfoReceived, movieRating);
 		return movieInfo;
 	}
 }

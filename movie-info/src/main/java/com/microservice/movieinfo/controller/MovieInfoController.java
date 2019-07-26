@@ -27,7 +27,7 @@ public class MovieInfoController {
 	public Movie getMovieInfo(@PathVariable("userId") String movieId)
 	//public void getMovieInfo(@PathVariable("userId") String mocieId)
 	{
-		MovieSummary movieSummary =restTemplet.getForObject("https://api.themoviedb.org/3/movie/550?api_key=26bdab9173aa5ff23735c438b35e45e3", MovieSummary.class); 
+		MovieSummary movieSummary =restTemplet.getForObject("https://api.themoviedb.org/3/movie/"+movieId+"?api_key=26bdab9173aa5ff23735c438b35e45e3", MovieSummary.class); 
 				//restTemplate.getForObject("https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" +  apiKey, MovieSummary.class);
 		
 		System.out.println(movieSummary);
